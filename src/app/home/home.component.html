@@ -1,32 +1,39 @@
-<div class='container'>
+<!-- Change flex flow according to @media orientation (vertical: reverse column. horizontal: row) -->
+<div class='body'>
     <mat-toolbar class='toolbar'>
         <span class='appTitle'>SAIF</span>
         <img src='../assets/img/saif-logo.png'>
     </mat-toolbar>
     <div class='container'>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Shoot</mat-card-title>
-            <span class="material-icons icon">track_changes</span>
-        </mat-card>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Buy</mat-card-title>
-            <span class="material-icons icon">store</span>
-        </mat-card>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Reload</mat-card-title>
-            <span class="material-icons icon">biotech</span>
-        </mat-card>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Log</mat-card-title>
-            <span class="material-icons icon">fact_check</span>
-        </mat-card>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Reminders</mat-card-title>
-            <span class="material-icons icon">event</span>
-        </mat-card>
-        <mat-card class='card'>
-            <mat-card-title class='cardTitle'>Settings</mat-card-title>
-            <span class="material-icons icon">settings</span>
-        </mat-card>
+        <div class='row'>
+                <mat-card class='card' id='card1' (click)='routeToPage("shoot")'>
+                <mat-card-title class='cardTitle'>Shoot</mat-card-title>
+                <span class="material-icons icon">track_changes</span>
+            </mat-card>
+            <mat-card class='card' id='card2' (click)='routeToPage("buy")'>
+                <mat-card-title class='cardTitle'>Buy</mat-card-title>
+                <span class="material-icons icon">store</span>
+            </mat-card>
+        </div>
+        <div class='row'>
+            <mat-card class='card' id='card3' (click)='routeToPage("reload")'>
+                <mat-card-title class='cardTitle'>Reload</mat-card-title>
+                <span class="material-icons icon">biotech</span>
+            </mat-card>
+            <mat-card class='card' id='card4' (click)='routeToPage("log")'>
+                <mat-card-title class='cardTitle'>Log</mat-card-title>
+                <span class="material-icons icon">fact_check</span>
+            </mat-card>
+        </div>
+        <div class='row'>
+            <mat-card class='card' id='card5' (click)='routeToPage("account")'>
+                <mat-card-title class='cardTitle'>Account</mat-card-title>
+                <span class="material-icons icon">face</span>
+            </mat-card>
+            <mat-card class='card' id='card6' (click)='routeToPage("settings")'>
+                <mat-card-title class='cardTitle'>Settings</mat-card-title>
+                <span class="material-icons icon">settings</span>
+            </mat-card>
+        </div>
     </div>
 </div>
