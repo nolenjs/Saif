@@ -1,5 +1,9 @@
-/*app-home {*/
-/*    height: 100%;*/
-/*    width: auto;*/
-/*    background-color: rgb(175, 160, 135);*/
-/*}*/
+.body {
+    height: 100%;
+    background-color: rgb(175, 160, 135);
+}
+
+.toolbar{
+    display: flex;
+    background-color: rgb(175, 160, 135);
+}

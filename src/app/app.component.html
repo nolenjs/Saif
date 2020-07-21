@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<div class='body'>
+    <mat-toolbar class='toolbar'>
+        <span class='appTitle' (click)='routeToHome()'>SAIF</span>
+        <img src='../assets/img/saif-logo.png' (click)='routeToHome()'>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+</div>

@@ -1,1 +1,42 @@
-<p>ammo works!</p>
+<div class='container'>
+    <mat-card class='ammoCard'>
+        <table class='infoBasic'>
+            <td><mat-form-field>
+                <mat-label>Caliber</mat-label>
+                <mat-select id='caliber'></mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field>
+                <mat-label>Brand</mat-label>
+                <mat-select id='brand'></mat-select>
+            </mat-form-field></td>
+        </table>
+        <table class='infoBullet'>
+            <td><mat-form-field>
+                <mat-label>Bullet Type</mat-label>
+                <mat-select id='bulletType'></mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field>
+                <mat-label>Bullet Weight</mat-label>
+                <input matInput id='bulletWeight'>
+            </mat-form-field></td>
+        </table>
+        <table class='infoPowder'>
+            <td><mat-form-field>
+                <mat-label>Powder Brand</mat-label>
+                <mat-select id='powderBrand'></mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field>
+                <mat-label>Powder Weight</mat-label>
+                <input matInput id='powderWeight'>
+            </mat-form-field></td>
+        </table>
+        <mat-form-field>
+            <mat-label>Primer Brand</mat-label>
+            <mat-select id='primerBrand'></mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Number of Rounds</mat-label>
+            <input matInput id='rounds'>
+        </mat-form-field>
+    </mat-card>
+</div>
