@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { AmmoComponent } from './ammo/ammo.component';
 import { LogComponent } from './log/log.component';
 import { AccountComponent } from './account/account.component'
@@ -30,7 +31,8 @@ import { AccountComponent } from './account/account.component'
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
