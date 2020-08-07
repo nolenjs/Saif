@@ -3,17 +3,23 @@
         <div class='info'>
             <mat-form-field>
                 <mat-label>Caliber</mat-label>
-                <mat-select id='caliber'></mat-select>
+                <mat-select id='caliber'>
+                    <mat-option (click)='addOption(true)'>Add Calliber</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field *ngIf='!reload'>
                 <mat-label>Brand</mat-label>
-                <mat-select id='brand'></mat-select>
+                <mat-select id='brand'>
+                    <mat-option (click)='addOption(true)'>Add Brand</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
         <div class='info' id='infoBullet'>
             <mat-form-field>
                 <mat-label>Bullet Type</mat-label>
-                <mat-select id='bulletType'></mat-select>
+                <mat-select id='bulletType'>
+                    <mat-option (click)='addOption(true)'>Add Bullet Type</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Bullet Weight</mat-label>
@@ -23,17 +29,21 @@
         <div class='info' id='infoPowder'  *ngIf='reload'>
             <mat-form-field>
                 <mat-label>Powder Brand</mat-label>
-                <mat-select id='bulletType'></mat-select>
+                <mat-select id='powderBrand'>
+                    <mat-option (click)='addOption(true)'>Add Powder Brand</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Powder Weight</mat-label>
-                <input matInput id='bulletWeight'>
+                <input matInput id='powderWeight'>
             </mat-form-field>
         </div>
         <div class='info' id='infoDetails'>
             <mat-form-field *ngIf='reload'>
                 <mat-label>Primer Brand</mat-label>
-                <mat-select id='primerBrand'></mat-select>
+                <mat-select id='primerBrand'>
+                    <mat-option (click)='addOption(true)'>Add Primer Brand</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Number of Rounds</mat-label>
@@ -42,9 +52,9 @@
         </div>
     </mat-card>
     <div class='ticketContainer'>
-        <!--<mat-card class='ticket' *ngFor=''-->
+        <!--<mat-card class='ticket' *ngFor='let ticket of ammoTickets'-->
     </div>
     <button mat-raised-button color="primary" id='submit'>
-        Log <img src='../assets/img/saif-logo.png'> <!--(click)='logAmmo()'>-->
+        Log <img id='logo' src='../assets/img/saif-logo.png' (click)='sendTickets()'> <!--(click)='sendTickets()'>-->
     </button>
 </div>

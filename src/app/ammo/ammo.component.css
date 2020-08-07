@@ -18,6 +18,10 @@
     overflow: auto;
 }
 
+#logo {
+    filter: invert(100%);
+}
+
 #submit {
     position: fixed;
     height: 48px;
