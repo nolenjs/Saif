@@ -25,6 +25,16 @@ export class AmmoComponent implements OnInit {
     }
   }
   
+  updateTicket(ticket, info){
+    ticket = info;
+    console.log(ticket);
+  }
+  
+  saveTicket(){
+    console.log(this.ticket)
+    //this.ammoTickets.push(this.ticket);
+  }
+  
   addOption(boo: boolean){
     if(boo) 
       this.selectOpt = boo;
@@ -32,11 +42,6 @@ export class AmmoComponent implements OnInit {
       //new comlumn/row in 
       this.selectOpt = boo;
     }
-  }
-  
-  saveTicket(){
-    console.log(this.ticket)
-    //this.ammoTickets.push(this.ticket);
   }
   
   sendTickets(){
