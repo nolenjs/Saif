@@ -3,14 +3,17 @@
         <div class='info'>
             <mat-form-field>
                 <mat-label>Caliber</mat-label>
-                <mat-select id='caliber'>
-                    <mat-option (click)='addOption(true)'>Add Calliber</mat-option>
+                <mat-select id='caliber' (ngModelChange)='updateTicket()'>
+                    <mat-option (click)='addOption("Calliber")'>Add Calliber</mat-option>
+                    <mat-option>Hi</mat-option>
+                    <!--Selected option not being displayed-->
                 </mat-select>
+                <!--<mat-error *ngIf=''></mat-error>-->
             </mat-form-field>
             <mat-form-field *ngIf='!reload'>
                 <mat-label>Brand</mat-label>
                 <mat-select id='brand'>
-                    <mat-option (click)='addOption(true)'>Add Brand</mat-option>
+                    <mat-option (click)='addOption("Bullet Brand")'>Add Brand</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -18,7 +21,7 @@
             <mat-form-field>
                 <mat-label>Bullet Type</mat-label>
                 <mat-select id='bulletType'>
-                    <mat-option (click)='addOption(true)'>Add Bullet Type</mat-option>
+                    <mat-option (click)='addOption("Bullet Type")'>Add Bullet Type</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -30,7 +33,7 @@
             <mat-form-field>
                 <mat-label>Powder Brand</mat-label>
                 <mat-select id='powderBrand'>
-                    <mat-option (click)='addOption(true)'>Add Powder Brand</mat-option>
+                    <mat-option (click)='addOption("Powder Brand")'>Add Powder Brand</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -42,7 +45,7 @@
             <mat-form-field *ngIf='reload'>
                 <mat-label>Primer Brand</mat-label>
                 <mat-select id='primerBrand'>
-                    <mat-option (click)='addOption(true)'>Add Primer Brand</mat-option>
+                    <mat-option (click)='addOption("Primer Brand")'>Add Primer Brand</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
