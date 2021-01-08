@@ -15,9 +15,9 @@
 .card {
     background-color: rgb(30, 45, 90);
     width: 28vw;
-    height: 20vh;
-    min-height: calc(28vw + 24px);
-    margin: 2vh;
+    height: 18vh;
+    min-height: calc(27vw + 24px);
+    margin: 3vh;
     border-radius: 24px;
     text-align: center;
 }

@@ -1,63 +1,131 @@
 <div class='container'>
     <mat-card class='ammoCard'>
-        <div class='info'>
-            <mat-form-field>
+        <table class='info'>
+            <td><mat-form-field class='input'> <!--(focusout)='checkInput(conditions, input)' --> 
                 <mat-label>Caliber</mat-label>
-                <mat-select id='caliber' (ngModelChange)='updateTicket()'>
-                    <mat-option (click)='addOption("Calliber")'>Add Calliber</mat-option>
-                    <mat-option>Hi</mat-option>
+                <mat-select [(ngModel)]='ticket.cal' id='cal'>
+                    <mat-option *ngFor='let option of ticketOpts.cal' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Caliber", "cal")'>Add Calliber</mat-option>
                     <!--Selected option not being displayed-->
                 </mat-select>
-                <!--<mat-error *ngIf=''></mat-error>-->
-            </mat-form-field>
-            <mat-form-field *ngIf='!reload'>
+            </mat-form-field></td>
+            <td><mat-form-field class='input' *ngIf='!reload'>
                 <mat-label>Brand</mat-label>
-                <mat-select id='brand'>
-                    <mat-option (click)='addOption("Bullet Brand")'>Add Brand</mat-option>
+                <mat-select [(ngModel)]='ticket.brand' id='brand'>
+                    <mat-option *ngFor='let option of ticketOpts.brand' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Brand", "brand")'>Add Brand</mat-option>
                 </mat-select>
-            </mat-form-field>
-        </div>
-        <div class='info' id='infoBullet'>
-            <mat-form-field>
+            </mat-form-field></td>
+            <td><mat-form-field class='input' *ngIf='reload'>
+                <mat-label>Bullet Brand</mat-label>
+                <mat-select [(ngModel)]='ticket.bulletBrand' id='bulletBrand'>
+                    <mat-option *ngFor='let option of ticketOpts.bulletBrand' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Bullet Brand", "bulletBrand")'>Add Brand</mat-option>
+                </mat-select>
+            </mat-form-field></td>
+        </table>
+        <table class='info' id='infoBullet'>
+            <td><mat-form-field  class='input'>
                 <mat-label>Bullet Type</mat-label>
-                <mat-select id='bulletType'>
-                    <mat-option (click)='addOption("Bullet Type")'>Add Bullet Type</mat-option>
+                <mat-select [(ngModel)]='ticket.bulletType' id='bulletType'>
+                    <mat-option *ngFor='let option of ticketOpts.bulletType' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Bullet Type", "bulletType")'>Add Bullet Type</mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field>
+            </mat-form-field></td>
+            <td><mat-form-field class='input' *ngIf='!shoot'>
                 <mat-label>Bullet Weight</mat-label>
-                <input matInput id='bulletWeight'>
-            </mat-form-field>
-        </div>
-        <div class='info' id='infoPowder'  *ngIf='reload'>
-            <mat-form-field>
+                <input matInput maxlength='12' [(ngModel)]='ticket.bulletWeight'>
+            </mat-form-field></td>
+            <td><mat-form-field  class='input' *ngIf='shoot'>
+                <mat-label>Bullet Weight</mat-label>
+                <mat-select [(ngModel)]='ticket.bulletType' id='bulletType'>
+                    <mat-option *ngFor='let option of ticketOpts.bulletType' [value]='option'>{{option}}</mat-option>
+                </mat-select>
+            </mat-form-field></td>
+        </table>
+        <table class='info' id='infoPowder'  *ngIf='reload'>
+            <td><mat-form-field class='input'>
                 <mat-label>Powder Brand</mat-label>
-                <mat-select id='powderBrand'>
-                    <mat-option (click)='addOption("Powder Brand")'>Add Powder Brand</mat-option>
+                <mat-select [(ngModel)]='ticket.powderBrand' id='powderBrand'>
+                    <mat-option *ngFor='let option of ticketOpts.powderBrand' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Powder Brand", "powderBrand")'>Add Powder Brand</mat-option>
                 </mat-select>
-            </mat-form-field>
-            <mat-form-field>
+            </mat-form-field></td>
+            <td><mat-form-field class='input'>
                 <mat-label>Powder Weight</mat-label>
-                <input matInput id='powderWeight'>
-            </mat-form-field>
-        </div>
-        <div class='info' id='infoDetails'>
-            <mat-form-field *ngIf='reload'>
+                <input matInput maxlength='12' [(ngModel)]='ticket.powderWeight'>
+            </mat-form-field></td>
+        </table>
+        <table class='info' id='infoDetails'>
+            <td><mat-form-field class='input' *ngIf='reload'>
                 <mat-label>Primer Brand</mat-label>
-                <mat-select id='primerBrand'>
-                    <mat-option (click)='addOption("Primer Brand")'>Add Primer Brand</mat-option>
+                <mat-select [(ngModel)]='ticket.primerBrand' id='primerBrand'>
+                    <mat-option *ngFor='let option of ticketOpts.primerBrand' [value]='option'>{{option}}</mat-option>
+                    <mat-option *ngIf='!shoot' (click)='addOption("Primer Brand", "primerBrand")'>Add Primer Brand</mat-option>
                 </mat-select>
+            </mat-form-field></td>
+            <td><mat-form-field class='input' id='rounds'>
+                <mat-label># of Rounds</mat-label>
+                <input matInput maxlength='8' [(ngModel)]='ticket.rounds' (change)='checkInputs(ticket.rounds)'>
+            </mat-form-field></td>
+            <mat-form-field class='input' *ngIf='!shoot && !reload'>
+                <mat-label>Price</mat-label>
+                <input matInput maxlength='7' type='number' [(ngModel)]='ticket.price'>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Number of Rounds</mat-label>
-                <input matInput id='rounds'>
-            </mat-form-field>
+        </table>
+        <div id='addTicket'>
+            <button mat-raised-button (click)='saveTicket()'>Add Ticket</button>
         </div>
     </mat-card>
     <div class='ticketContainer'>
-        <!--<mat-card class='ticket' *ngFor='let ticket of ammoTickets'-->
+        <mat-card class='ticket' *ngFor='let at of ammoTickets'>
+            <mat-card-header class='cardTitle'>
+                <mat-card-title>Cal: {{at.cal}}</mat-card-title>
+                <button mat-icon-button class='delete' (click)='deleteTicket(at)'>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-header>
+            <mat-card-content class='centerTicket'>
+                <div class='dat' *ngIf='at.date'>
+                    <div class='label'>Date: </div>
+                    <div class='content'>{{showDate()}}</div>
+                </div>
+                <div class='dat'*ngIf='!reload && at.brand'>
+                    <div class='label'>Brand: </div>
+                    <div class='content'>{{at.brand}}</div>
+                </div>
+                <div class='dat' *ngIf='at.bulletWeight'>
+                    <div class='label'>Bullet Weight: </div>
+                    <div class='content'>{{at.bulletWeight}}</div>
+                </div>
+                <div class='dat' *ngIf='at.bulletType'>
+                    <div class='label'>Bullet Type: </div>
+                    <div class='content'>{{at.bulletType}}</div>
+                </div>
+                <div class='dat' *ngIf='reload && at.powderWeight'>
+                    <div class='label'>Powder Weight: </div>
+                    <div class='content'>{{at.powderWeight}}</div>
+                </div>
+                <div class='dat' *ngIf='reload && at.powderBrand'>
+                    <div class='label'>Powder Brand: </div>
+                    <div class='content'>{{at.powderBrand}}</div>
+                </div>
+                <div class='dat' *ngIf='reload && at.primerBrand'>
+                    <div class='label'>Primer Brand: </div>
+                    <div class='content'>{{at.primerBrand}}</div>
+                </div>
+                <div class='dat'>
+                    <div class='label'>Rounds: </div>
+                    <div class='content'>{{at.rounds}}</div>
+                </div>
+                <div class='dat' *ngIf='at.price'>
+                    <div class='label'>Price: </div>
+                    <div class='content'>{{at.price}}</div>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
     <button mat-raised-button color="primary" id='submit'>
         Log <img id='logo' src='../assets/img/saif-logo.png' (click)='sendTickets()'> <!--(click)='sendTickets()'>-->
     </button>
-</div>
+</div> 

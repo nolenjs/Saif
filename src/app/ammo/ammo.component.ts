@@ -1,9 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AmmoTicket } from '../../assets/interfaces/ammo-ticket';
+import { AmmoTicket, TicketOpts } from '../../assets/interfaces/ammo-ticket';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/option-dialog.component';
-
 export interface DialogData {
   name: string;
   option: string;
@@ -18,66 +17,118 @@ export class AmmoComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog) { }
   
   reload: boolean;
-  ticket: AmmoTicket;
-  ammoTickets: AmmoTicket[];
+  shoot: boolean;
+  error: boolean;
+  ticket: AmmoTicket = {
+        cal: '',
+        date: '',
+        brand: '',
+        bulletWeight: undefined,
+        bulletType: '',
+        powderWeight: undefined,
+        powderBrand: '',
+        primerBrand: '',
+        rounds: undefined,
+        price: undefined
+      }
+  ticketOpts: TicketOpts = {
+        cal: ["9MM"],
+        brand: [''],
+        bulletBrand: [''],
+        bulletType: [''],
+        powderBrand: [''],
+        primerBrand: ['']
+      }
+  ammoTickets: AmmoTicket[] = [];
   
   ngOnInit(): void {
     if (this.router.url == '/reload'){
-      console.log(this.router.url);
+      this.shoot = false;
       this.reload = true;
-      this.ticket = {
-        cal: '',
-        bulletWeight: 0,
-        bulletType: '',
-        powderWeight: 0,
-        powderBrand: '',
-        primerBrand: '',
-        rounds: 0
-      }
+      
     }
     else{
-      console.log(this.router.url);
       this.reload = false;
+      if (this.router.url == '/shoot')
+        {this.shoot = true;}
+    }
+  }
+  
+  checkInputs(input){
+    if (input == '' || input == undefined)
+      this.error = true;
+    else
+      this.error = false;
+  }
+
+  saveTicket(){
+    const ammo = this.ticket;
+    this.checkInputs(this.ticket.cal)
+    this.checkInputs(this.ticket.rounds)
+    if (!this.error){
+      this.ammoTickets.push(ammo);
+      console.log(this.ammoTickets)
       this.ticket = {
         cal: '',
+        date: '',
         brand: '',
-        bulletWeight: 0,
+        bulletWeight: undefined,
         bulletType: '',
-        rounds: 0
+        powderWeight: undefined,
+        powderBrand: '',
+        primerBrand: '',
+        rounds: undefined,
+        price: undefined
       }
     }
   }
   
-  updateTicket(/*ticket, info*/){
-    // ticket = info;
-    // console.log(ticket);
-    console.log("Function is functioning lol")
+  showDate(){
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 
+  'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let date = new Date();
+    let dateString = months[date.getMonth()] + '/' + date.getDate() + '/' + date.getFullYear();
+    console.log("Date: " + date + '\n' + "Date String: " + dateString);
+    this.ticket.date = dateString;
+    return dateString;
   }
   
-  saveTicket(){
-    console.log(this.ticket)
-    //this.ammoTickets.push(this.ticket);
-  }
-  
-  addOption(name: string){
-    let data;
+  addOption(name: string, id: string){
+    let data = '';
     Object.keys(this.ticket).forEach(item => {
-      if (name == item){
-        console.log(item)
+      if (id == item){
         if (!this.ticket[item]) 
           this.ticket[item] = ' ';
-        data = this.ticket[item]
+        data = this.ticket[item];
       }
-    })
+    });
+      
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
       data: {name: name, option: data}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed. Ticket: ' + this.ticket);
-      
+      Object.keys(this.ticket).forEach(item => {
+        if (id == item){
+          this.ticket[item] = result;
+          Object.keys(this.ticketOpts).forEach(item2 => {
+            if (item == item2)
+              this.ticketOpts[item2].push(result);
+          })
+        }
+      });
     });
+  
+  }
+  
+  deleteTicket(t){
+    for (let i = 0; i < this.ammoTickets.length; i++){
+      if (t == this.ammoTickets[i]){
+        this.ammoTickets[i].splice(i, 1);
+        return
+      }
+    }
   }
   
   sendTickets(){
