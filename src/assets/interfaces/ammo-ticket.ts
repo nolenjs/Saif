@@ -12,10 +12,10 @@ export interface AmmoTicket {
 }
 
 export interface TicketOpts {
-    cal: [''],
-    brand?: [''],
-    bulletBrand?: [''],
-    bulletType?: [''],
-    powderBrand?: [''],
-    primerBrand?: ['']
+    cal: string[],
+    brand?: string[],
+    bulletBrand?: string[],
+    bulletType?: string[],
+    powderBrand?: string[],
+    primerBrand?: string[]
 }

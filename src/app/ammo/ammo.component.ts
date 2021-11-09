@@ -125,7 +125,7 @@ export class AmmoComponent implements OnInit {
   deleteTicket(t){
     for (let i = 0; i < this.ammoTickets.length; i++){
       if (t == this.ammoTickets[i]){
-        this.ammoTickets[i].splice(i, 1);
+        this.ammoTickets.splice(i, 1);
         return
       }
     }
